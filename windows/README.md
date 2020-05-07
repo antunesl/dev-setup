@@ -1,5 +1,4 @@
-To start the setup, run this command on Powershell
-
+To start the setup run this command on Powershell (needs elevated privileges)
 ```ps1
 iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/antunesl/dev-setup/master/windows/setup.ps1'))
 ```
