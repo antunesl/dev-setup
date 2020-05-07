@@ -46,6 +46,7 @@ Install-Chocolatey
 Install-FromChocolatey 'git'
 Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/antunesl/dev-setup/master/common/.gitconfig' -OutFile (Join-Path $env:USERPROFILE '.gitconfig')
 
+Install-FromChocolatey 'firacode'
 Install-FromChocolatey 'vscode-insiders'
 Install-FromChocolatey 'dotnetcore-sdk'
 Install-FromChocolatey 'microsoft-windows-terminal'
@@ -58,6 +59,5 @@ Install-FromChocolatey 'powershell-core'
 Install-PowerShellModule 'Posh-Git' { Add-PoshGitToProfile -AllHosts }
 Install-PowerShellModule 'oh-my-posh' { }
 Install-PowerShellModule 'PSReadLine' { }
-
 
 Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/antunesl/dev-setup/master/windows/powershell_profile.ps1' -OutFile $PROFILE
