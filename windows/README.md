@@ -6,6 +6,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercon
 ## Chocolatey Software list
  - firacode
  - cascadiacodepl
+ - 7zip
  - vscode-insiders
  - dotnetcore-sdk
  - microsoft-windows-terminal
