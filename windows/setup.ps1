@@ -48,6 +48,7 @@ Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/antunesl/dev-setup/mas
 
 Install-FromChocolatey 'firacode'
 Install-FromChocolatey 'cascadiacodepl'
+Install-FromChocolatey '7zip'
 Install-FromChocolatey 'vscode-insiders'
 Install-FromChocolatey 'dotnetcore-sdk'
 Install-FromChocolatey 'microsoft-windows-terminal'
