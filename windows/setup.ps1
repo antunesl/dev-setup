@@ -33,7 +33,7 @@ function Install-PowerShellModule {
     if (!(Get-Command -Name $ModuleName -ErrorAction SilentlyContinue)) {
         Write-Host "Installing $ModuleName"
         Install-Module -Name $ModuleName -Scope CurrentUser -Confirm $true
-        Import-Module $ModuleName -Confirm
+        Import-Module $ModuleName -Confirm $true
 
         Invoke-Command -ScriptBlock $PostInstall
     } else {
@@ -46,17 +46,27 @@ Install-Chocolatey
 Install-FromChocolatey 'git'
 Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/antunesl/dev-setup/master/common/.gitconfig' -OutFile (Join-Path $env:USERPROFILE '.gitconfig')
 
+# Fonts
 Install-FromChocolatey 'firacode'
 Install-FromChocolatey 'cascadiacodepl'
+
+# Utilities
 Install-FromChocolatey '7zip'
 Install-FromChocolatey 'vscode-insiders'
-Install-FromChocolatey 'dotnetcore-sdk'
 Install-FromChocolatey 'microsoft-windows-terminal'
 Install-FromChocolatey 'insomnia-rest-api-client'
 Install-FromChocolatey 'linqpad'
+Install-FromChocolatey 'powershell-core'
+
+# Browsers
 Install-FromChocolatey 'firefox'
 Install-FromChocolatey 'googlechrome'
-Install-FromChocolatey 'powershell-core'
+
+# Development
+Install-FromChocolatey 'dotnetcore-sdk'
+Install-FromChocolatey 'azure-cli'
+Install-FromChocolatey 'pulumi'
+
 
 Install-PowerShellModule 'Posh-Git' { Add-PoshGitToProfile -AllHosts }
 Install-PowerShellModule 'oh-my-posh' { }
