@@ -67,6 +67,7 @@ Install-FromChocolatey 'googlechrome'
 Install-FromChocolatey 'dotnetcore-sdk'
 Install-FromChocolatey 'azure-cli'
 Install-FromChocolatey 'pulumi'
+Install-FromChocolatey 'nodejs'
 
 
 Install-PowerShellModule 'Posh-Git' { Add-PoshGitToProfile -AllHosts }
