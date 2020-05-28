@@ -57,6 +57,7 @@ Install-FromChocolatey 'microsoft-windows-terminal'
 Install-FromChocolatey 'insomnia-rest-api-client'
 Install-FromChocolatey 'linqpad'
 Install-FromChocolatey 'powershell-core'
+Install-FromChocolatey 'azure-data-studio'
 
 # Browsers
 Install-FromChocolatey 'firefox'
