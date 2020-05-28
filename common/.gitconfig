@@ -23,18 +23,3 @@
 
 [push]
     default = simple
-    
-[code]
-    editor = code-insiders --wait
-
-[merge]
-    tool = vscode
-
-[mergetool "vscode"]
-    cmd = code-insiders --wait $MERGED
-
-[diff]
-    tool = vscode
-
-[difftool "vscode"]
-    cmd = code-insiders --wait --diff $LOCAL $REMOTE
