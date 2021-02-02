@@ -40,6 +40,7 @@ function Install-PowerShellModule {
         Write-Host "$ModuleName was already installed, skipping"
     }
 }
+Install-Module PowerShellGet -Scope CurrentUser -Force -AllowClobber
 
 Install-Chocolatey
 
