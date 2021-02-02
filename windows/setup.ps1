@@ -52,14 +52,14 @@ Install-FromChocolatey 'cascadiacodepl'
 
 # Utilities
 Install-FromChocolatey '7zip'
-Install-FromChocolatey 'vscode-insiders'
-Install-FromChocolatey 'microsoft-windows-terminal'
+Install-FromChocolatey 'vscode-insiders --pre'
+#Install-FromChocolatey 'microsoft-windows-terminal' -- Install from Windows Store
 Install-FromChocolatey 'insomnia-rest-api-client'
-Install-FromChocolatey 'linqpad'
-Install-FromChocolatey 'powershell-core'
+#Install-FromChocolatey 'linqpad'
 Install-FromChocolatey 'azure-data-studio'
 
 # Browsers
+Install-FromChocolatey 'microsoft-edge-insider-dev'
 Install-FromChocolatey 'firefox'
 Install-FromChocolatey 'googlechrome'
 
@@ -67,11 +67,10 @@ Install-FromChocolatey 'googlechrome'
 Install-FromChocolatey 'dotnetcore-sdk'
 Install-FromChocolatey 'azure-cli'
 Install-FromChocolatey 'pulumi'
-Install-FromChocolatey 'nodejs'
+Install-FromChocolatey 'nodejs-lts'
 
-
+# Powershell 
 Install-PowerShellModule 'Posh-Git' { Add-PoshGitToProfile -AllHosts }
 Install-PowerShellModule 'oh-my-posh' { }
 Install-PowerShellModule 'PSReadLine' { }
-
 Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/antunesl/dev-setup/master/windows/powershell_profile.ps1' -OutFile $PROFILE
