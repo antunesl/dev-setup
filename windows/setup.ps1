@@ -40,6 +40,10 @@ function Install-PowerShellModule {
         Write-Host "$ModuleName was already installed, skipping"
     }
 }
+
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm
+
+# Update PowershellGet
 Install-Module PowerShellGet -Scope CurrentUser -Force -AllowClobber
 
 Install-Chocolatey
@@ -53,10 +57,8 @@ Install-FromChocolatey 'cascadiacodepl'
 
 # Utilities
 Install-FromChocolatey '7zip'
-Install-FromChocolatey 'vscode-insiders --pre'
-#Install-FromChocolatey 'microsoft-windows-terminal' -- Install from Windows Store
+Install-FromChocolatey 'vscode-insiders'
 Install-FromChocolatey 'insomnia-rest-api-client'
-#Install-FromChocolatey 'linqpad'
 Install-FromChocolatey 'azure-data-studio'
 
 # Browsers
@@ -71,7 +73,8 @@ Install-FromChocolatey 'pulumi'
 Install-FromChocolatey 'nodejs-lts'
 
 # Powershell 
-Install-PowerShellModule 'Posh-Git' { Add-PoshGitToProfile -AllHosts }
-Install-PowerShellModule 'oh-my-posh' { }
-Install-PowerShellModule 'PSReadLine' { }
+Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force
+Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
+Install-Module PSReadLine -AllowPrerelease -Force
+
 Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/antunesl/dev-setup/master/windows/powershell_profile.ps1' -OutFile $PROFILE
