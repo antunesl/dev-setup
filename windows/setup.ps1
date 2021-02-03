@@ -41,30 +41,54 @@ function Install-PowerShellModule {
     }
 }
 
+# Update Execution Policy
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm
+
 
 # Update PowershellGet
 Install-Module PowerShellGet -Scope CurrentUser -Force -AllowClobber
 
+
+# Chocolatey
 Install-Chocolatey
 
-Install-FromChocolatey 'git'
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/antunesl/dev-setup/master/common/.gitconfig' -OutFile (Join-Path $env:USERPROFILE '.gitconfig')
 
 # Fonts
 Install-FromChocolatey 'firacode'
 Install-FromChocolatey 'cascadiacodepl'
 
-# Utilities
-Install-FromChocolatey '7zip'
-Install-FromChocolatey 'vscode-insiders'
-Install-FromChocolatey 'insomnia-rest-api-client'
-Install-FromChocolatey 'azure-data-studio'
 
 # Browsers
 Install-FromChocolatey 'microsoft-edge-insider-dev'
 Install-FromChocolatey 'firefox'
 Install-FromChocolatey 'googlechrome'
+
+
+# Generic Tools
+Install-FromChocolatey '7zip'
+Install-FromChocolatey 'vlc'
+Install-FromChocolatey '1password'
+Install-FromChocolatey 'vscode-insiders'
+Install-FromChocolatey 'powertoys'
+
+
+# Dev Tools
+Install-FromChocolatey 'insomnia-rest-api-client'
+Install-FromChocolatey 'azure-data-studio'
+Install-FromChocolatey 'gitkraken'
+## git
+Install-FromChocolatey 'git'
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/antunesl/dev-setup/master/common/.gitconfig' -OutFile (Join-Path $env:USERPROFILE '.gitconfig')
+
+
+# Messaging
+Install-FromChocolatey 'discord'
+Install-FromChocolatey 'microsoft-teams'
+
+
+# Audio
+Install-FromChocolatey 'spotify --ignore-checksums'
+
 
 # Development
 Install-FromChocolatey 'dotnetcore-sdk'
@@ -72,9 +96,10 @@ Install-FromChocolatey 'azure-cli'
 Install-FromChocolatey 'pulumi'
 Install-FromChocolatey 'nodejs-lts'
 
-# Powershell 
+
+# Powershell Customization
 Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force
 Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
 Install-Module PSReadLine -AllowPrerelease -Force
-
+## Set powershell profile
 Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/antunesl/dev-setup/master/windows/powershell_profile.ps1' -OutFile $PROFILE
