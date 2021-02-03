@@ -4,21 +4,82 @@
 # https://github.com/aaronpowell/system-init
 #
 
-# Get the base URI path from the ScriptToCall value
-$bstrappackage = "-bootstrapPackage"
-$helperUri = $Boxstarter['ScriptToCall']
-$strpos = $helperUri.IndexOf($bstrappackage)
-$helperUri = $helperUri.Substring($strpos + $bstrappackage.Length)
-$helperUri = $helperUri.TrimStart("'", " ")
-$helperUri = $helperUri.TrimEnd("'", " ")
-$helperUri = $helperUri.Substring(0, $helperUri.LastIndexOf("/"))
-$helperUri += "/Scripts"
-write-host "helper script base URI is $helperUri"
 
-function Execute-Script {
-    Param ([string]$script)
-    write-host "executing $helperUri/$script ..."
-	# iex ((new-object net.webclient).DownloadString("$helperUri/$script"))
+#--- Enable developer mode on the system ---
+function Enable-DevMode {
+    Set-ItemProperty -Path HKLM:\Software\Microsoft\Windows\CurrentVersion\AppModelUnlock -Name AllowDevelopmentWithoutDevLicense -Value 1
+}
+
+function Set-ExplorerSettings {
+	#--- Configuring Windows properties ---
+	#--- Windows Features ---
+	# Show hidden files, Show protected OS files, Show file extensions
+	Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions
+
+	#--- File Explorer Settings ---
+	# will expand explorer to the actual folder you're in
+	Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneExpandToCurrentFolder -Value 1
+	#adds things back in your left pane like recycle bin
+	Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneShowAllFolders -Value 1
+	#opens PC to This PC, not quick access
+	Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name LaunchTo -Value 1
+	#taskbar where window is open for multi-monitor
+	Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name MMTaskbarMode -Value 2
+}
+
+#--- Uninstall unnecessary applications that come with Windows out of the box ---
+$applicationList = @(
+	"Microsoft.BingFinance"
+	"Microsoft.3DBuilder"
+	"Microsoft.BingFinance"
+	"Microsoft.BingNews"
+	"Microsoft.BingSports"
+	"Microsoft.BingWeather"
+	"Microsoft.CommsPhone"
+	"Microsoft.Getstarted"
+	"Microsoft.WindowsMaps"
+	"*MarchofEmpires*"
+	"Microsoft.GetHelp"
+	"Microsoft.Messaging"
+	"*Minecraft*"
+	"Microsoft.MicrosoftOfficeHub"
+	"Microsoft.OneConnect"
+	"Microsoft.WindowsPhone"
+	"Microsoft.WindowsSoundRecorder"
+	"*Solitaire*"
+	"Microsoft.MicrosoftStickyNotes"
+	"Microsoft.Office.Sway"
+	"Microsoft.XboxApp"
+	"Microsoft.XboxIdentityProvider"
+	"Microsoft.ZuneMusic"
+	"Microsoft.ZuneVideo"
+	"Microsoft.NetworkSpeedTest"
+	"Microsoft.FreshPaint"
+	"Microsoft.Print3D"
+	"Microsoft.SkypeApp"
+	"*Autodesk*"
+	"*BubbleWitch*"
+        "king.com*"
+        "G5*"
+	"*Dell*"
+	"*Facebook*"
+	"*Keeper*"
+	"*Netflix*"
+	"*Twitter*"
+	"*Plex*"
+	"*.Duolingo-LearnLanguagesforFree"
+	"*.EclipseManager"
+	"ActiproSoftwareLLC.562882FEEB491" # Code Writer
+	"*.AdobePhotoshopExpress"
+);
+function Clean-PreInstalled-Apps {
+    Write-Host "Uninstall some applications that come with Windows out of the box" -ForegroundColor "Yellow"
+	
+    foreach ($appName in $applicationList) {
+        Write-Output "Trying to remove $appName"
+	Get-AppxPackage $appName -AllUsers | Remove-AppxPackage
+	Get-AppXProvisionedPackage -Online | Where DisplayName -like $appName | Remove-AppxProvisionedPackage -Online
+    }
 }
 
 function Install-Chocolatey {
@@ -59,6 +120,9 @@ function Install-PowerShellModule {
     }
 }
 
+# // ---------------------------------------------------------------
+
+
 # Update Execution Policy
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm
 
@@ -69,9 +133,9 @@ Install-Module PowerShellGet -Scope CurrentUser -Force -AllowClobber
 Install-Chocolatey
 
 # Run Windows Scripts
-Execute-Script 'WindowsDevMode.ps1'
-
-
+Clean-PreInstalled-Apps
+Enable-DevMode
+Set-ExplorerSettings
 
 
 
