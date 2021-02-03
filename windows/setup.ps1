@@ -96,6 +96,7 @@ function Install-FromChocolatey {
     )
     param(
         [switch]
+	[Parameter(Mandatory = $false)]
         $PreRelease
     )
 
