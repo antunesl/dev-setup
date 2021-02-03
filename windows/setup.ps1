@@ -91,15 +91,13 @@ function Install-Chocolatey {
 function Install-FromChocolatey {
     param(
         [string]
-        [Parameter(Mandatory = $true)]
-        $PackageName,
+        [Parameter(Mandatory = $true)] $PackageName,
    
-        [switch]
-	[Parameter(Mandatory = $false)]
-        $PreRelease
+        [Switch]
+	[Parameter()] $PreRelease
     )
 
-    if ($PreRelease) 
+    if ($PreRelease.IsPresent) 
     {
         choco install $PackageName --pre --yes
     }
