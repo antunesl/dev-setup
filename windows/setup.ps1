@@ -168,7 +168,7 @@ Install-FromChocolatey '1password'
 Install-FromChocolatey 'vscode-insiders'
 Install-FromChocolatey 'powertoys'
 Install-FromChocolatey 'screentogif'
-Install-FromChocolatey 'microsoft-windows-terminal --pre'
+Install-FromChocolatey 'microsoft-windows-terminal' -PreRelease
 
 
 # Dev Tools
