@@ -92,9 +92,8 @@ function Install-FromChocolatey {
     param(
         [string]
         [Parameter(Mandatory = $true)]
-        $PackageName
-    )
-    param(
+        $PackageName,
+   
         [switch]
 	[Parameter(Mandatory = $false)]
         $PreRelease
