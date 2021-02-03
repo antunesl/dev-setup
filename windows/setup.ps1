@@ -62,13 +62,17 @@ function Install-PowerShellModule {
 # Update Execution Policy
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm
 
-
 # Update PowershellGet
 Install-Module PowerShellGet -Scope CurrentUser -Force -AllowClobber
 
-
 # Chocolatey
 Install-Chocolatey
+
+# Run Windows Scripts
+Execute-Script 'WindowsDevMode.ps1'
+
+
+
 
 
 # Fonts
@@ -123,3 +127,4 @@ Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
 Install-Module PSReadLine -AllowPrerelease -Force
 ## Set powershell profile
 Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/antunesl/dev-setup/master/windows/powershell_profile.ps1' -OutFile $PROFILE
+
