@@ -94,8 +94,19 @@ function Install-FromChocolatey {
         [Parameter(Mandatory = $true)]
         $PackageName
     )
+    param(
+        [switch]
+        $PreRelease
+    )
 
-    choco install $PackageName --yes
+    if ($PreRelease) 
+    {
+        choco install $PackageName --pre --yes
+    }
+    else
+    {
+        choco install $PackageName --yes
+    }
 }
 
 function Install-PowerShellModule {
@@ -175,7 +186,7 @@ Install-FromChocolatey 'microsoft-teams'
 
 
 # Audio
-Install-FromChocolatey 'spotify --ignore-checksums'
+Install-FromChocolatey 'spotify'
 
 
 # Development
