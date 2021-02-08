@@ -147,7 +147,6 @@ Enable-DevMode
 Set-ExplorerSettings
 
 
-
 # Fonts
 Install-FromChocolatey 'firacode'
 Install-FromChocolatey 'cascadiacodepl'
@@ -166,6 +165,7 @@ Install-FromChocolatey '1password'
 Install-FromChocolatey 'vscode-insiders'
 Install-FromChocolatey 'powertoys'
 Install-FromChocolatey 'screentogif'
+Install-FromChocolatey 'teracopy'
 Install-FromChocolatey 'microsoft-windows-terminal' -PreRelease
 
 
