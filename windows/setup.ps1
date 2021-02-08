@@ -166,6 +166,7 @@ Install-FromChocolatey 'vscode-insiders'
 Install-FromChocolatey 'powertoys'
 Install-FromChocolatey 'screentogif'
 Install-FromChocolatey 'teracopy'
+Install-FromChocolatey 'transmission'
 Install-FromChocolatey 'microsoft-windows-terminal' -PreRelease
 
 
