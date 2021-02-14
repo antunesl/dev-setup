@@ -136,7 +136,7 @@ function Install-PowerShellModule {
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm
 
 # Update PowershellGet
-Install-Module PowerShellGet -Scope CurrentUser -Force -AllowClobber
+Install-Module PowerShellGet -Force -AllowClobber
 
 # Chocolatey
 Install-Chocolatey
