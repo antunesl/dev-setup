@@ -144,7 +144,7 @@ Install-Chocolatey
 # Run Windows Scripts
 Clean-PreInstalled-Apps
 Enable-DevMode
-Set-ExplorerSettings
+#Set-ExplorerSettings
 
 
 # Fonts
